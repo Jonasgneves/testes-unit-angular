@@ -15,7 +15,7 @@ export class BankingComponent {
   get getPoupanca (): number {
     return this.poupanca
   }
-  get getcarteira (): number {
+  get getCarteira (): number {
     return this.carteira
   }
 

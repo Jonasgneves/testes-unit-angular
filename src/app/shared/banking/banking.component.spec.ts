@@ -26,7 +26,7 @@ describe('BankingComponent', () => {
   });
 
   it('(U) getCarteira(); should have Carteira = 50', () => {
-    expect(component.getcarteira).toEqual(50);
+    expect(component.getCarteira).toEqual(50);
   });
 
   it('(U) setSacar(); should transfer Poupanca from Carteira', () => {
@@ -34,16 +34,32 @@ describe('BankingComponent', () => {
     fixture.detectChanges();
 
     expect(component.getPoupanca).toEqual(0)
-    expect(component.getcarteira).toEqual(60)
+    expect(component.getCarteira).toEqual(60)
+  });
+
+  it('(U) setSacar(); should transfer poupanca dont have string (isNaN) or poupanca < value', () => {
+    expect(component.setSacar('any_string')).not.toBeTruthy()
+    expect(component.setSacar('100')).not.toBeTruthy()
+    expect(component.getPoupanca).toEqual(10)
+    expect(component.getCarteira).toEqual(50)
   });
 
   it('(U) setDepositar(); should transfer Carteira from Poupanca', () => {
     component.setDepositar('50');
     fixture.detectChanges();
 
-    expect(component.getcarteira).toEqual(0)
+    expect(component.getCarteira).toEqual(0)
     expect(component.getPoupanca).toEqual(60)
   });
+
+  it('(U) setDepositar(); should transfer carteira dont have string (isNaN) or carteira < value', () => {
+    expect(component.setDepositar('any_string')).not.toBeTruthy()
+    expect(component.setDepositar('100')).not.toBeTruthy()
+    expect(component.getPoupanca).toEqual(10)
+    expect(component.getCarteira).toEqual(50)
+  });
+
+
 
 
 
